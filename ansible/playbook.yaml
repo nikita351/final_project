@@ -1,0 +1,28 @@
+---
+- name: install maven
+  hosts: STAGING_SERVER
+  become: yes
+
+  vars:
+          ansible_python_interpreter: /usr/bin/python3
+
+  tasks:
+        - name: cashe
+          apt:
+              update_cache: yes
+
+        - name: Install Maven using Ansible
+          apt: 
+            name: maven
+            state: latest
+
+        - name: jdk
+          apt: 
+            name: default-jdk 
+            state: latest
+
+        - name: docker
+          apt: 
+            name: docker
+            state: latest
+    
