@@ -8,8 +8,8 @@ pipeline {
     stages {
         stage("Build") {
             steps {
-                sh "mvn -version"
-                sh "mvn clean install"
+                sh "./mvnw package"
+                sh "java -jar target/*.jar"
             }
         }
     }
