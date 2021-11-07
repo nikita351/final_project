@@ -6,7 +6,8 @@ pipeline {
                 sh "./mvnw package"
             }
         }
-          stage('Build') {
+        stage('Build Images') {
+
             
                 docker {
                     image 'openjdk:8'
