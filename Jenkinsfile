@@ -9,9 +9,13 @@ pipeline {
         stage("Build") {
             steps {
                 sh "./mvnw package"
-                sh "java -jar target/*.jar"
+                // sh "java -jar target/*.jar"
             }
         }
+        stage('Build image') {         
+       
+            app = docker.build("myapp/test")    
+       }     
     }
 
     post {
