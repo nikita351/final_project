@@ -12,9 +12,10 @@ pipeline {
                 // sh "java -jar target/*.jar"
             }
         }
-        stage('Build image') {         
-       
-            app = docker.build("myapp/test")    
+        stage('Build image') {
+            steps {         
+                app = docker.build("myapp/test")
+            }    
        }     
     }
 
