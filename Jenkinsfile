@@ -19,7 +19,8 @@ pipeline {
     stages { 
         stage('Cloning our Git') { 
             steps { 
-                git 'https://github.com/nikita351/final_project.git' 
+                checkout scm 
+                // git 'https://github.com/nikita351/final_project.git' 
             }
         }
         stage("Build") {
