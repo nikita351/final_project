@@ -20,7 +20,6 @@ pipeline {
         stage('Cloning our Git') { 
             steps { 
                 checkout scm 
-                // git 'https://github.com/nikita351/final_project.git' 
             }
         }
         stage("Build") {
@@ -31,7 +30,9 @@ pipeline {
         stage('Building our image') { 
             steps { 
                 script { 
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    dockerImage = docker.build("nikita351/final_project") 
+
+                    // dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                 }
             } 
         }
