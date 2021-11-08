@@ -29,15 +29,15 @@ pipeline {
             steps { 
                 script { 
                     docker.withRegistry( '', registryCredential ) { 
-                        dockerImage.push('latest') 
+                        dockerImage.push() 
                     }
                 } 
             }
         } 
-        stage('Cleaning up') { 
-            steps { 
-                sh "docker rmi $registry:$BUILD_NUMBER" 
-            }
-        } 
+        // stage('Cleaning up') { 
+        //     steps { 
+        //         sh "docker rmi $registry:$BUILD_NUMBER" 
+        //     }
+        // } 
     }
 }
