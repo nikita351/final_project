@@ -1,17 +1,17 @@
-# FROM openjdk:8
+FROM openjdk:8
 
-# EXPOSE 8080
+EXPOSE 8080
 
-# ADD target/spring-petclinic-2.5.0-SNAPSHOT.jar spring-petclinic-2.5.0-SNAPSHOT.jar
+ADD target/spring-petclinic-2.5.0-SNAPSHOT.jar spring-petclinic-2.5.0-SNAPSHOT.jar
 
-# ENTRYPOINT ["java","-jar","/spring-petclinic-2.5.0-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/spring-petclinic-2.5.0-SNAPSHOT.jar"]
 
 #spring-petclinic-2.5.0-SNAPSHOT.jar
 
-FROM openjdk:8-jdk-alpine
+# FROM openjdk:8-jdk-alpine
 
-VOLUME /tmp
+# VOLUME /tmp
 
-COPY target/spring-petclinic-2.5.0-SNAPSHOT.jar spring-petclinic-2.5.0-SNAPSHOT.jar
+# COPY target/spring-petclinic-2.5.0-SNAPSHOT.jar spring-petclinic-2.5.0-SNAPSHOT.jar
 
-ENTRYPOINT ["java","-jar","/spring-petclinic-2.5.0-SNAPSHOT.jar"]
+# ENTRYPOINT ["java","-jar","/spring-petclinic-2.5.0-SNAPSHOT.jar"]
