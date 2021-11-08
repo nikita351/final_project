@@ -55,7 +55,7 @@ node {
 
     stage('Build image') {
   
-       docker.build("nikita351/final_project")
+       app = docker.build("nikita351/final_project")
     }
 
     stage('Test image') {
