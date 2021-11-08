@@ -19,7 +19,7 @@ pipeline {
     stages { 
         stage('Cloning our Git') { 
             steps { 
-                git 'git@github.com:nikita351/final_project.git' 
+                git 'https://github.com/nikita351/final_project.git' 
             }
         }
         stage("Build") {
