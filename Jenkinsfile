@@ -11,7 +11,7 @@ pipeline {
                 checkout scm 
             }
         }
-        stage("Build") {
+        stage("Build mvnw") {
             steps {
                 script {
                     sh "./mvnw package"
@@ -21,7 +21,6 @@ pipeline {
         stage('Building image') { 
             steps { 
                 script { 
-                    //sh "docker build -t nikita351/final_project ."
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                 }
             } 
