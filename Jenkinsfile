@@ -19,23 +19,23 @@ pipeline {
         stage('Building our image') { 
             steps { 
                 script { 
-                    docker.build("nikita351/final_project").push() 
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                 }
             } 
         }
-        // stage('Deploy our image') { 
-        //     steps { 
-        //         script { 
-        //             docker.withRegistry( '', registryCredential ) { 
-        //                 dockerImage.push() 
-        //             }
-        //         } 
-        //     }
-        // } 
-        // stage('Cleaning up') { 
-        //     steps { 
-        //         sh "docker rmi $registry:$BUILD_NUMBER" 
-        //     }
-        // } 
+        stage('Deploy our image') { 
+            steps { 
+                script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
+                    }
+                } 
+            }
+        } 
+        stage('Cleaning up') { 
+            steps { 
+                sh "docker rmi $registry:$BUILD_NUMBER" 
+            }
+        } 
     }
 }
