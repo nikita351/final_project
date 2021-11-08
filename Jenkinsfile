@@ -11,12 +11,6 @@ pipeline {
                 checkout scm 
             }
         }
-        stage('Delete workspace before build starts') {
-            steps {
-                echo 'Deleting workspace'
-                deleteDir()
-            }
-        }
         stage("Build") {
             steps {
                 sh "./mvnw package"
