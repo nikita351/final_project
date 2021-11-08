@@ -23,17 +23,15 @@ pipeline {
         }
         stage('Deploy our image') { 
             steps { 
-                script { 
-                    docker.withRegistry( '', registryCredential ) { 
-                        dockerImage.push() 
+                    withDockerRegistry( '', registryCredential ) { 
+                        sh 'docker push nikita351/final_project' 
                     }
-                } 
             }
         } 
-        stage('Cleaning up') { 
-            steps { 
-                sh "docker rmi $registry:$BUILD_NUMBER" 
+        stage('Delete docker image locally') {
+            steps{
+                sh 'docker rmi nikita351/final_project'
             }
-        } 
+        }
     }
 }
