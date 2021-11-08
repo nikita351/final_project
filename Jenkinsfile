@@ -1,9 +1,9 @@
 pipeline { 
-    // environment { 
-    //     registry = "nikita351/final_project" 
-    //     registryCredential = 'docker' 
-    //     dockerImage = '' 
-    // }
+    environment { 
+        registry = "nikita351/final_project" 
+        registryCredential = 'docker' 
+        dockerImage = '' 
+    }
     agent any 
     stages { 
         stage('Cloning our Git') { 
@@ -18,28 +18,24 @@ pipeline {
          }
         stage('Building our image') { 
             steps { 
-                sh "docker build -t getintodevops/hellonode ."
+                script { 
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                }
             } 
         }
-        stage('Test') {
-            steps {
-                sh 'echo "Tests passed"'
+        stage('Deploy our image') { 
+            steps { 
+                script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
+                    }
+                } 
             }
-        }
-        // stage('Deploy our image') { 
-        //     steps { 
-        //             withDockerRegistry( '', registryCredential ) { 
-        //                 sh ''' 
-        //                 docker push nikita351/final_project
-        //                 ''' 
-        //             }
-        //     }
-        // } 
-        // stage('Delete docker image locally') {
-        //     steps{
-        //         sh 'docker rmi nikita351/final_project'
-        //     }
-        // }
+        } 
+        stage('Cleaning up') { 
+            steps { 
+                sh "docker rmi $registry:$BUILD_NUMBER" 
+            }
+        } 
     }
 }
-
