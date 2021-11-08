@@ -21,19 +21,20 @@ pipeline {
         stage('Building image') { 
             steps { 
                 script { 
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    sh "docker build -t nikita351/final_project"
+                    // dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                 }
             } 
         }
-        stage('Push image') { 
-            steps { 
-                script { 
-                    docker.withRegistry( '', registryCredential ) { 
-                        dockerImage.push() 
-                    }
-                } 
-            }
-        } 
+        // stage('Push image') { 
+        //     steps { 
+        //         script { 
+        //             docker.withRegistry( '', registryCredential ) { 
+        //                 dockerImage.push() 
+        //             }
+        //         } 
+        //     }
+        // } 
         // stage('Cleaning up') { 
         //     steps { 
         //         sh "docker rmi $registry:$BUILD_NUMBER" 
