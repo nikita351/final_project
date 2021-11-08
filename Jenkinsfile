@@ -1,14 +1,3 @@
-// pipeline {
-//     agent any
-//     stages {
-//         stage("Build") {
-//             steps {
-//                 sh "./mvnw package"
-//             }
-//         }
-//     }
-// }
-
 pipeline { 
     environment { 
         registry = "nikita351/final_project" 
@@ -30,9 +19,7 @@ pipeline {
         stage('Building our image') { 
             steps { 
                 script { 
-                    dockerImage = docker.build("nikita351/final_project") 
-
-                    // dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                 }
             } 
         }
