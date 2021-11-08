@@ -13,30 +13,31 @@ pipeline {
         }
         stage("Build") {
             steps {
-                sh "./mvnw package"
+                script {
+                    sh "./mvnw package"
+                }
              }
          }
-        stage('Building our image') { 
+        stage('Building image') { 
             steps { 
                 script { 
-                    sh "docker build -t nikita351/final_project ."
-                    // dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                 }
             } 
         }
-        // stage('Deploy our image') { 
-        //     steps { 
-        //         script { 
-        //             docker.withRegistry( '', registryCredential ) { 
-        //                 dockerImage.push() 
-        //             }
-        //         } 
-        //     }
-        // } 
-        // stage('Cleaning up') { 
-        //     steps { 
-        //         sh "docker rmi $registry:$BUILD_NUMBER" 
-        //     }
-        // } 
+        stage('Push image') { 
+            steps { 
+                script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
+                    }
+                } 
+            }
+        } 
+        stage('Cleaning up') { 
+            steps { 
+                sh "docker rmi $registry:$BUILD_NUMBER" 
+            }
+        } 
     }
 }
