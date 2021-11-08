@@ -18,13 +18,15 @@ pipeline {
          }
         stage('Building our image') { 
             steps { 
-                sh 'docker build -t nikita351/final_project .'
+                sh "docker build -t nikita351/final_project"
             } 
         }
         stage('Deploy our image') { 
             steps { 
                     withDockerRegistry( '', registryCredential ) { 
-                        sh 'docker push nikita351/final_project' 
+                        sh ''' 
+                        docker push nikita351/final_project
+                        ''' 
                     }
             }
         } 
