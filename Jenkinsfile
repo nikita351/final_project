@@ -18,13 +18,11 @@ pipeline {
          }
         stage('Building our image') { 
             steps { 
-                app = docker.build("getintodevops/hellonode")
+                sh "docker build -t getintodevops/hellonode ."
             } 
         }
         stage('Test') {
-            app.inside {
             sh 'echo "Tests passed"'
-        }
         }
         // stage('Deploy our image') { 
         //     steps { 
