@@ -22,7 +22,9 @@ pipeline {
             } 
         }
         stage('Test') {
-            sh 'echo "Tests passed"'
+            steps {
+                sh 'echo "Tests passed"'
+            }
         }
         // stage('Deploy our image') { 
         //     steps { 
