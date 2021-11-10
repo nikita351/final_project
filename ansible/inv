@@ -1,2 +1,2 @@
-[STAGING_SERVER]
-linux ansible_host=3.84.253.232
+[PROD_SERVER]
+linux  ansible_host=54.160.196.77
