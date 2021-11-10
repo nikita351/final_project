@@ -4,6 +4,7 @@
 
   vars:
     default_container_name: final_project
+    default_image_name: nikita351/final_project
     ansible_python_interpreter : /usr/bin/python3
 
   tasks:
@@ -36,14 +37,15 @@
 
     - name: pull an image
       docker_image:
-        name: nikita351/final_project:94
+        name: nikita351/final_project
+        tag: "{{ tag }}"
         source: pull
         state: present
 
     - name: Create and run container 
       docker_container:
         name: "{{ default_container_name }}"
-        image: nikita351/final_project:94
+        image: "{{ default_image_name }}:{{ tag }}"
         state: started
         auto_remove: true
         ports:
