@@ -1,7 +1,7 @@
 ---
 - hosts: all
   become: true
-  
+
   vars:
     default_container_name: final_project
     ansible_python_interpreter : /usr/bin/python3
@@ -36,14 +36,14 @@
 
     - name: pull an image
       docker_image:
-        name: nikita351/final_project:92
+        name: nikita351/final_project:94
         source: pull
         state: present
 
     - name: Create and run container 
       docker_container:
         name: "{{ default_container_name }}"
-        image: nikita351/final_project:92
+        image: nikita351/final_project:94
         state: started
         auto_remove: true
         ports:
