@@ -1,20 +1,19 @@
 ---
 - hosts: all
   become: true
+  
   vars:
     default_container_name: final_project
-    default_container_image: ubuntu
     ansible_python_interpreter : /usr/bin/python3
 
   tasks:
-    - name: Install aptitude using apt
-      apt: 
-        name : aptitude 
-        state : latest 
+    - name: Install pkg
+      apt:
         update_cache : yes 
-        force_apt_get : yes
-      loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
-
+        pkg:
+          - python3-pip
+        state: present
+     
     - name: Add Docker GPG apt Key
       apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
@@ -37,14 +36,14 @@
 
     - name: pull an image
       docker_image:
-        name: nikita351/final_project:91
+        name: nikita351/final_project:92
         source: pull
         state: present
 
     - name: Create and run container 
       docker_container:
         name: "{{ default_container_name }}"
-        image: nikita351/final_project:91
+        image: nikita351/final_project:92
         state: started
         auto_remove: true
         ports:
