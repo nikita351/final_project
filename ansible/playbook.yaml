@@ -1,7 +1,8 @@
 ---
-- name: Install docker, pull and run image
+- name: Install docker, pull and run image. After install java, create users and grops.
   hosts: all
   become: yes
 
   roles:
     - install_run_docker_container
+    - install_java_create_users_and_groups
