@@ -1,5 +1,5 @@
 [PROD_SERVER]
-linux1  ansible_host=52.207.114.34
+linux1  ansible_host=3.93.177.20
 
 [TEST_SERVER]
-linux2  ansible_host=18.208.149.231
+linux2  ansible_host=34.207.115.231
