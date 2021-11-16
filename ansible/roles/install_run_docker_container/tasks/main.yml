@@ -28,17 +28,14 @@
 
 - name: Pull image
   docker_image:
-    name: "{{ tag }}"
-    #name: nikita351/final_project
-    #tag: "{{ tag }}"
+    name: "{{ default_image_name }}"
     source: pull
     state: present
 
 - name: Create and run container 
   docker_container:
     name: "{{ default_container_name }}"
-    image: "{{ tag }}"
-    # image: "{{ default_image_name }}:{{ tag }}"
+    image: "{{ default_image_name }}"
     state: started
     auto_remove: true
     ports:
