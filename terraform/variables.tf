@@ -1,8 +1,3 @@
-variable "instance_tags" {
-    type = list
-    default = ["PROD_SERVER", "TEST_SERVER"]
-}
-
 variable "region" {
     type = string
     default = "us-east-1"

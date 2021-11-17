@@ -6,12 +6,15 @@ resource "aws_instance" "prod_server" {
     ami                    = "ami-083654bd07b5da81d"  
     instance_type          = var.instance_type
     key_name               = var.key_name
-    count                  = 2
     vpc_security_group_ids = [aws_security_group.main.id]
 
      tags = {
-      Name  = element(var.instance_tags, count.index)
+      Name  = "prod_server"
   }
+}
+
+output "public_ip" {
+  value = aws_instance.prod_server.public_ip
 }
 
 resource "aws_key_pair" "ssh_key" {
