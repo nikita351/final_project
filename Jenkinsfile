@@ -4,7 +4,7 @@ pipeline {
         registryCredential = 'docker' 
         dockerImage = '' 
     }
-    agent any 
+    agent {label 'ubuntu run_docker'} 
     stages { 
         stage('Check git repo') { 
             steps { 
