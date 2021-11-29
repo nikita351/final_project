@@ -8,6 +8,7 @@ pipeline {
     stages { 
         stage('Check git repo') { 
             steps { 
+                cleanWs()
                 checkout scm 
             }
         }
@@ -36,7 +37,7 @@ pipeline {
         } 
         stage('Cleaning up') { 
             steps { 
-                sh "docker rmi $registry:$BUILD_NUMBER" 
+                cleanWs()
             }
         } 
     }
