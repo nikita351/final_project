@@ -36,10 +36,11 @@ pipeline {
             }
         } 
         stage('Cleaning up') { 
-            steps { 
-                cleanWs()
-                deleteDir()
-            }
+            post { 
+                always { 
+                    cleanWs()
+        }
+    }
         } 
     }
 }
