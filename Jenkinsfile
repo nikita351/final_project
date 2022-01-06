@@ -3,8 +3,7 @@ pipeline {
         registry = "nikita351/final_project" 
         registryCredential = 'docker' 
         dockerImage = '' 
-    }
-    agent {} 
+    } 
     stages { 
         stage('Check git repo') { 
             steps { 
