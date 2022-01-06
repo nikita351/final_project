@@ -4,7 +4,7 @@ pipeline {
         registryCredential = 'docker' 
         dockerImage = '' 
     }
-    agent any 
+    agent none 
     stages { 
         stage('Check git repo') { 
             steps { 
