@@ -8,7 +8,7 @@ pipeline {
     stages { 
         stage('Check git repo') { 
             steps { 
-                cleanWs()
+                // cleanWs()
                 checkout scm 
             }
         }
