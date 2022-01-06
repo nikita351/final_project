@@ -1,2 +1,2 @@
 [PROD_SERVER]
-linux1  ansible_host=35.174.5.192
+linux1  ansible_host=3.86.165.186
