@@ -1,3 +1,5 @@
 [PROD_SERVER]
 linux1  ansible_host=44.201.235.131
 
+[defaults]
+host_key_checking = False
