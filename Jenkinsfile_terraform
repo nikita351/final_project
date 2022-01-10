@@ -1,24 +1,29 @@
 pipeline {
-  agent any
-  stages{
-    stage('checkout') {
-      steps {
-        checkout scm
+    agent any
+    stages{
+      stage('checkout') {
+        steps {
+          checkout scm
+        }
       }
-    }
-    stage('terraform') {
-      steps {
-        sh 'cd ./terraform terraform init'
+      stage('terraform') {
+        steps {
+          sh 'cd ./terraform terraform init'
+        }
       }
-    }
-    stage('Terraform Plan') { 
-      steps {
-        sh ' cd ./terraform terraform plan' 
+      stage('Terraform Plan') { 
+        steps {
+          sh ' cd ./terraform terraform plan' 
+        }
       }
-    }
-      stage('Terraform Apply') { 
+      stage('Terraform destroy') { 
       steps {
         sh ' cd ./terraform terraform destroy -input=true' 
+      }
+    }
+     stage('Terraform vcersion') { 
+      steps {
+        sh ' cd ./terraform terraform --version' 
       }
     }
   }
