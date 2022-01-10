@@ -17,8 +17,8 @@ pipeline {
                 script {
                     sh "./mvnw package"
                 }
-             }
-         }
+                }
+            }
         stage('Building image') { 
             steps { 
                 script { 
