@@ -8,7 +8,7 @@ pipeline {
     }
     stage('terraform') {
       steps {
-        sh './terraformw plan -auto-approve -no-color'
+        sh './terraform terraform plan -auto-approve -no-color'
       }
     }
   }
