@@ -19,12 +19,12 @@ pipeline {
         }
     stage('Terraform Init') {
       steps {
-        sh "cd ./terraform terraform init -input=false"
+        sh "cd ./terraform terraform init"
       }
     }
     stage('Terraform Plan') {
       steps {
-        sh "cd ./terraform terraform plan -out=tfplan -input=false"
+        sh "cd ./terraform terraform plan -input=false"
       }
     }
     stage('Terraform Apply') {
