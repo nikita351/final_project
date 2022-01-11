@@ -24,7 +24,7 @@ pipeline {
     stage('Terraform Apply') {
       steps {
         input 'Apply Plan'
-        sh "cd ./terraform terraform apply -input=false tfplan"
+        sh "cd ./terraform terraform apply"
       }
     }
   }
