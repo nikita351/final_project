@@ -19,7 +19,12 @@ pipeline {
     }
     stage('Terraform Init') {
       steps {
-        sh "cd ./terraform terraform init"
+        sh '''
+        #!/bin/bash
+        cd ./terraform
+        pwd 
+        terraform init
+        '''
       }
     }
     stage('Terraform Plan') {
