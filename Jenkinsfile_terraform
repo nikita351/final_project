@@ -11,6 +11,12 @@ pipeline {
     AWS_SECRET_ACCESS_KEY = "${params.AWS_SECRET_ACCESS_KEY}"
   }
   stages {
+    stage('Check git repo') { 
+            steps { 
+                //cleanWs()
+                checkout scm 
+            }
+        }
     stage('Terraform Init') {
       steps {
         sh "cd ./terraform terraform init -input=false"
