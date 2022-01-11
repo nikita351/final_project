@@ -23,7 +23,7 @@ pipeline {
         #!/bin/bash
         cd ./terraform
         pwd 
-        terraform init
+        terraform init ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY}
         '''
       }
     }
@@ -33,7 +33,7 @@ pipeline {
         #!/bin/bash
         cd ./terraform
         pwd 
-        terraform plan
+        terraform plan ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY}
         '''
       }
     }
@@ -44,7 +44,7 @@ pipeline {
         #!/bin/bash
         cd ./terraform
         pwd 
-        terraform apply
+        terraform apply ${AWS_ACCESS_KEY_ID} ${AWS_SECRET_ACCESS_KEY}
         '''
       }
     }
