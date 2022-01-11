@@ -1,29 +1,39 @@
 pipeline {
-    agent any
-    stages{
-      stage('checkout') {
-        steps {
-          checkout scm
-        }
-      }
-      stage('terraform') {
-        steps {
-          sh 'cd ./terraform terraform init'
-        }
-      }
-      stage('Terraform Plan') { 
-        steps {
-          sh ' cd ./terraform terraform plan' 
-        }
-      }
-      stage('Terraform destroy') { 
+  parameters {
+    password (name: 'AWS_ACCESS_KEY_ID')
+    password (name: 'AWS_SECRET_ACCESS_KEY')
+  }
+  environment {
+    TF_WORKSPACE = 'terraform' //Sets the Terraform Workspace
+    TF_IN_AUTOMATION = 'true'
+    AWS_ACCESS_KEY_ID = "${params.AWS_ACCESS_KEY_ID}"
+    AWS_SECRET_ACCESS_KEY = "${params.AWS_SECRET_ACCESS_KEY}"
+  }
+  stages {
+    stage('Terraform Init') {
       steps {
-        sh ' cd ./terraform terraform destroy -input=true' 
+        sh "${env.TERRAFORM_HOME}/terraform init -input=false"
       }
     }
-     stage('Terraform vcersion') { 
+    stage('Terraform Plan') {
       steps {
-        sh ' cd ./terraform terraform --version' 
+        sh "${env.TERRAFORM_HOME}/terraform plan -out=tfplan -input=false -var-file='dev.tfvars'"
+      }
+    }
+    stage('Terraform Apply') {
+      steps {
+        input 'Apply Plan'
+        sh "${env.TERRAFORM_HOME}/terraform apply -input=false tfplan"
+      }
+    }
+    stage('AWSpec Tests') {
+      steps {
+          sh '''#!/bin/bash -l
+bundle install --path ~/.gem
+bundle exec rake spec || true
+'''
+
+        junit(allowEmptyResults: true, testResults: '**/testResults/*.xml')
       }
     }
   }
