@@ -29,13 +29,23 @@ pipeline {
     }
     stage('Terraform Plan') {
       steps {
-        sh "cd ./terraform terraform plan"
+        sh '''
+        #!/bin/bash
+        cd ./terraform
+        pwd 
+        terraform plan
+        '''
       }
     }
     stage('Terraform Apply') {
       steps {
         // input 'Apply Plan'
-        sh "cd ./terraform terraform apply"
+        sh '''
+        #!/bin/bash
+        cd ./terraform
+        pwd 
+        terraform apply
+        '''
       }
     }
   }
