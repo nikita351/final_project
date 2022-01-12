@@ -43,7 +43,8 @@ pipeline {
         sh '''
         #!/bin/bash
         cd ./terraform
-        pwd 
+        pwd
+        input 'Apply Plan'
         terraform apply -input=false
         '''
       }
