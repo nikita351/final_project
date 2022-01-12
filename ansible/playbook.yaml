@@ -1,6 +1,6 @@
 ---
 - name: Install docker, pull and run image. After install java, create users and grops.
-  hosts: all
+  hosts: PROD_SERVER
   become: true
 
   roles:
