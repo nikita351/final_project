@@ -4,8 +4,7 @@ pipeline {
         stage('Check git repo') { 
             steps { 
                 //cleanWs()
-                // checkout scm 
-                git branch: 'main', url: "git@github.com:nikita351/final_project.git", credentialsId: '	git_nikita351' // здесь добавляем credentialsId и указываем наш ID.
+                checkout scm 
             }
         }
         stage("Ansible") {
