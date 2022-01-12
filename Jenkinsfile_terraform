@@ -17,34 +17,32 @@ pipeline {
           checkout scm 
       }
     }
-    stage('Terraform Init') {
-      steps {
-        sh '''
-        #!/bin/bash
-        cd ./terraform
-        pwd 
-        terraform init
-        '''
-      }
-    }
-    stage('Terraform Plan') {
-      steps {
-        sh '''
-        #!/bin/bash
-        cd ./terraform
-        pwd 
-        terraform plan 
-        '''
-      }
-    }
+    // stage('Terraform Init') {
+    //   steps {
+    //     sh '''
+    //     #!/bin/bash
+    //     cd ./terraform
+    //     pwd 
+    //     terraform init
+    //     '''
+    //   }
+    // }
+    // stage('Terraform Plan') {
+    //   steps {
+    //     sh '''
+    //     #!/bin/bash
+    //     cd ./terraform
+    //     pwd 
+    //     terraform plan 
+    //     '''
+    //   }
+    // }
     stage('Terraform Apply') {
       steps {
-        // input 'Apply Plan'
         sh '''
         #!/bin/bash
         cd ./terraform
         pwd
-        input 'Apply Plan'
         terraform apply -auto-approve -no-color
         '''
       }
