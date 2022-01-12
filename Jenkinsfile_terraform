@@ -43,7 +43,7 @@ pipeline {
         #!/bin/bash
         cd ./terraform
         pwd
-        terraform apply -auto-approve -no-color
+        terraform destroy -auto-approve -no-color
         '''
       }
     }
