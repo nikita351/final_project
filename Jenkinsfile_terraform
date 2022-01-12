@@ -45,7 +45,7 @@ pipeline {
         cd ./terraform
         pwd
         input 'Apply Plan'
-        terraform apply -input=false
+        terraform apply -auto-approve -no-color
         '''
       }
     }
