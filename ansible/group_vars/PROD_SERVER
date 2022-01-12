@@ -1,4 +1,4 @@
 ---
 ansible_user                 : ubuntu  
 ansible_ssh_private_key_file : /home/nikita/.ssh/id_rsa
-ansible_ssh_user : nikita
+ansible_ssh_user : ubuntu
