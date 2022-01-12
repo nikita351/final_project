@@ -1,0 +1,22 @@
+pipeline { 
+    agent any
+    stages { 
+        stage('Check git repo') { 
+            steps { 
+                //cleanWs()
+                checkout scm 
+            }
+        }
+        stage("Build mvnw") {
+            steps {
+                sh '''
+                #!/bin/bash
+                cd ./ansible
+                pwd 
+                ansible-playbook playbook.yaml -i inv --extra-vars="default_image_name=nikita351/final_project:52"
+                '''
+                }
+            }
+        }    
+    } 
+}
