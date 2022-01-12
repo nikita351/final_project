@@ -17,16 +17,16 @@ pipeline {
           checkout scm 
       }
     }
-    // stage('Terraform Init') {
-    //   steps {
-    //     sh '''
-    //     #!/bin/bash
-    //     cd ./terraform
-    //     pwd 
-    //     terraform init
-    //     '''
-    //   }
-    // }
+    stage('Terraform Init') {
+      steps {
+        sh '''
+        #!/bin/bash
+        cd ./terraform
+        pwd 
+        terraform init
+        '''
+      }
+    }
     // stage('Terraform Plan') {
     //   steps {
     //     sh '''
