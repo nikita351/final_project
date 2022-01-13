@@ -20,6 +20,17 @@ pipeline {
                 '''
             }
         }
+        stage("Sonnar scan") {
+            steps {
+                sh '''
+                export PATH=$PATH:/mnt/c/Users/Mykyta_Mironov/Downloads/sonar-scanner-4.6.2.2472-linux/bin
+                mvn sonar:sonar \
+                -Dsonar.projectKey=final \
+                -Dsonar.host.url=http://localhost:9000 \
+                -Dsonar.login=4120087c013a83d1eca5515553399a4225155499
+                '''
+            }
+        }
         stage("Build mvnw") {
             steps {
                 script {
