@@ -9,7 +9,8 @@ pipeline {
         stage('Clone SCM') { 
             steps { 
                 cleanWs()
-                checkout scm 
+                checkout scm
+                sh 'exit 0'
             }
         }
         stage("Sonnar scan") {
@@ -21,7 +22,7 @@ pipeline {
                 -Dsonar.projectKey=final \
                 -Dsonar.host.url=http://localhost:9000 \
                 -Dsonar.login=4120087c013a83d1eca5515553399a4225155499
-                exit 0
+                exit 1
                 '''
                 }
             }
@@ -30,6 +31,7 @@ pipeline {
             steps {
                 script {
                     sh "./mvnw package"
+                    sh 'exit 0'
                     }
                 }
             }
@@ -37,6 +39,7 @@ pipeline {
             steps { 
                 script { 
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                    sh 'exit 0'
                 }
             } 
         }
@@ -45,6 +48,7 @@ pipeline {
                 script { 
                     docker.withRegistry( '', registryCredential ) { 
                         dockerImage.push() 
+                    sh 'exit 0'
                     }
                 } 
             }
