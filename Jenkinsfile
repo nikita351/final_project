@@ -14,7 +14,7 @@ pipeline {
         }
         stage("Run sonnar") {
             steps {
-                sh "docker-compose docker-compose.sonar.yml run"
+                sh "docker-compose -f docker-compose.sonar.yml up"
             }
         }
         stage("Build mvnw") {
