@@ -21,7 +21,7 @@ pipeline {
                         mvn sonar:sonar \
                         -Dsonar.projectKey=final \
                         -Dsonar.host.url=http://localhost:9000 \
-                        -Dsonar.login=4120087c013a83d1eca5515553399a4225155499
+                        -Dsonar.login=c41bda810fe960f97ab40088d0508de50b641988
                         '''
                         sh "exit 1"
                     }
