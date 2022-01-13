@@ -21,8 +21,8 @@ pipeline {
             }
         }
         stage("Sonnar scan") {
-            withMaven(maven: 'mvn') {
             steps {
+                withMaven(maven: 'mvn') {
                 sh '''
                 export PATH=$PATH:/mnt/c/Users/Mykyta_Mironov/Downloads/sonar-scanner-4.6.2.2472-linux/bin
                 mvn sonar:sonar \
