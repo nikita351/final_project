@@ -16,7 +16,7 @@ pipeline {
             steps {
                 sh '''
                 sudo sysctl -w vm.max_map_count=262144
-                docker-compose -f docker-compose.sonar.yml up
+                docker-compose -f docker-compose.sonar.yml up -d
                 '''
             }
         }
