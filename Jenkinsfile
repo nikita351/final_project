@@ -16,11 +16,12 @@ pipeline {
             steps {
                 sh "docker-compose docker-compose.sonar.yml run"
             }
+        }
         stage("Build mvnw") {
             steps {
                 script {
                     sh "./mvnw package"
-                }
+                    }
                 }
             }
         stage('Building image') { 
