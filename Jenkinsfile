@@ -6,12 +6,16 @@ pipeline {
     }
     agent any
     stages { 
-        stage('Check git repo') { 
+        stage('Clone SCM') { 
             steps { 
-                //cleanWs()
+                cleanWs()
                 checkout scm 
             }
         }
+        stage("Run sonnar") {
+            steps {
+                sh "docker-compose docker-compose.sonar.yml run"
+            }
         stage("Build mvnw") {
             steps {
                 script {
