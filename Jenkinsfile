@@ -22,8 +22,9 @@ pipeline {
                 -Dsonar.projectKey=final \
                 -Dsonar.host.url=http://localhost:9000 \
                 -Dsonar.login=4120087c013a83d1eca5515553399a4225155499
-                exit 1
                 '''
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "exit 1"
                 }
             }
         }
