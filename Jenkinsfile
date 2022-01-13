@@ -12,14 +12,6 @@ pipeline {
                 checkout scm 
             }
         }
-        stage("Run sonnar") {
-            steps {
-                sh '''
-                sudo sysctl -w vm.max_map_count=262144
-                docker-compose -f docker-compose.sonar.yml up -d
-                '''
-            }
-        }
         stage("Sonnar scan") {
             steps {
                 withMaven(maven: 'mvn') {
