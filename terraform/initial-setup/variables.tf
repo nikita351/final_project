@@ -12,3 +12,8 @@ variable "key_name" {
     type = string
     default = "id_rsa"
 }
+
+variable "project_name" {
+    type = string
+    default = "terraform-up-and-running-for-nikita-mironov"
+}
